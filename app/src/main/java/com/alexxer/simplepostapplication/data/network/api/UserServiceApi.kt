@@ -1,4 +1,4 @@
-package com.alexxer.simplepostapplication.data.network.service
+package com.alexxer.simplepostapplication.data.network.api
 
 import com.alexxer.simplepostapplication.data.network.model.UserDTO
 import retrofit2.http.GET

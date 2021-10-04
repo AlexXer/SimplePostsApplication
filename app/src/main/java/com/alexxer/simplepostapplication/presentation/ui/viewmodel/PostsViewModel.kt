@@ -39,7 +39,9 @@ class PostsViewModel(private val interactor: PostsInteractor) : ViewModel() {
     }
 
     fun onDialogHide() {
-        _isDialogOpen.tryEmit(false)
+        viewModelScope.launch {
+            _isDialogOpen.emit(false)
+        }
     }
 
     private fun collectPosts() {

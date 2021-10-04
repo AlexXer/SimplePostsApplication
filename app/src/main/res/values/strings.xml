@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimplePostApplication</string>
+    <string name="app_name">EasyPost</string>
     <string name="error_dialog_title">Something went wrong…</string>
     <string name="error_dialog_message">Please, check your internet connection</string>
     <string name="hide_button_text">Hide</string>

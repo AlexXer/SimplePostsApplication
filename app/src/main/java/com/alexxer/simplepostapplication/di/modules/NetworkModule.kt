@@ -1,7 +1,7 @@
 package com.alexxer.simplepostapplication.di.modules
 
-import com.alexxer.simplepostapplication.data.network.service.PostServiceApi
-import com.alexxer.simplepostapplication.data.network.service.UserServiceApi
+import com.alexxer.simplepostapplication.data.network.api.PostServiceApi
+import com.alexxer.simplepostapplication.data.network.api.UserServiceApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -18,7 +18,6 @@ class NetworkModule {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
 
     @Provides
     @Singleton

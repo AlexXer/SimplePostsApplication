@@ -5,10 +5,11 @@ import com.alexxer.simplepostapplication.data.db.dao.PostDao
 import com.alexxer.simplepostapplication.data.db.dao.UserDao
 import com.alexxer.simplepostapplication.data.db.entity.toDomain
 import com.alexxer.simplepostapplication.data.network.model.toEntity
-import com.alexxer.simplepostapplication.data.network.service.PostServiceApi
-import com.alexxer.simplepostapplication.data.network.service.UserServiceApi
+import com.alexxer.simplepostapplication.data.network.api.PostServiceApi
+import com.alexxer.simplepostapplication.data.network.api.UserServiceApi
 import com.alexxer.simplepostapplication.domain.model.UserPost
 import com.alexxer.simplepostapplication.domain.repository.PostsRepository
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -25,6 +26,7 @@ class PostsRepositoryImpl @Inject constructor(
     private val usersServiceApi: UserServiceApi
 ) : PostsRepository {
 
+    @FlowPreview
     override suspend fun getAllPosts(): Flow<Result<List<UserPost>>> =
         postsDao
             .getPosts()
@@ -46,11 +48,9 @@ class PostsRepositoryImpl @Inject constructor(
     override suspend fun refreshPosts() {
         val posts = postsServiceApi.getAllPosts()
         val userIds = posts.map { postResponse -> postResponse.userId }.toSortedSet()
-        Log.d("+++", userIds.joinToString(" "))
+
         userIds
             .map { userId -> usersServiceApi.getUserById(userId) }
-            .asFlow()
-            .catch { ex -> throw ex }
             .map { userDTO -> userDTO.toEntity() }
             .toList()
             .also { users -> userDao.insertUsers(users) }

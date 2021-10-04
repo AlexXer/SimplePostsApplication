@@ -1,19 +1,27 @@
 package com.alexxer.simplepostapplication.presentation.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AlertDialog
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +29,7 @@ import androidx.compose.ui.window.DialogProperties
 import com.alexxer.simplepostapplication.R
 import com.alexxer.simplepostapplication.domain.model.UserPost
 import com.alexxer.simplepostapplication.presentation.ui.viewmodel.PostsViewModel
+import com.alexxer.simplepostapplication.ui.theme.OldPaper
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
@@ -54,20 +63,38 @@ fun Body(viewModel: PostsViewModel) {
 fun Success(posts: List<UserPost>) {
     LazyColumn {
         items(posts) {
-            Column(
-                Modifier
+            Card(
+                shape = RoundedCornerShape(6.dp),
+                backgroundColor = OldPaper,
+                modifier = Modifier
                     .padding(8.dp)
                     .fillMaxWidth()
-                    .border(2.dp,Color.Blue))
-            {
-                Text(
-                    text = it.name,
-                    Modifier.padding(horizontal = 8.dp,vertical = 4.dp),
-                    color = Color.Black
-                )
-                Text(text = it.title,
-                    Modifier.padding(horizontal = 8.dp,vertical = 4.dp),
-                    color = Color.Black)
+            ) {
+                Column()
+                {
+                    Row() {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_user_circle),
+                            contentDescription = "User icon",
+                            modifier = Modifier
+                                .padding(top = 8.dp, start = 8.dp)
+                                .size(50.dp)
+                        )
+                        Text(
+                            text = it.name,
+                            Modifier
+                                .padding(horizontal = 8.dp)
+                                .align(Alignment.CenterVertically),
+                            color = Color.Black
+                        )
+                    }
+
+                    Text(
+                        text = it.title,
+                        Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                        color = Color.Black
+                    )
+                }
             }
         }
     }

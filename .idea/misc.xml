@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/SimplePostApplication/app/src/main/res/drawable/ic_user_circle.xml" value="0.1578125" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/SimplePostApplication/app/src/main/res/drawable/splash_screen_background.xml" value="0.1578125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/SimplePostApplication/app/src/main/res/layout/activity_post.xml" value="0.14166666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/SimplePostApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1578125" />
       </map>
     </option>
   </component>
