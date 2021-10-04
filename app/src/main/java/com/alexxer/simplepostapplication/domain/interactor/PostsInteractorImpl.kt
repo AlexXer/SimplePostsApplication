@@ -1,5 +1,6 @@
 package com.alexxer.simplepostapplication.domain.interactor
 
+import com.alexxer.simplepostapplication.core.dispatchers.DispatchersProvider
 import com.alexxer.simplepostapplication.data.repository.PostsRepositoryImpl
 import com.alexxer.simplepostapplication.domain.model.UserPost
 import com.alexxer.simplepostapplication.domain.repository.PostsRepository
@@ -9,13 +10,14 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class PostsInteractorImpl @Inject constructor(
-    private val repository: PostsRepository
+    private val repository: PostsRepository,
+    private val dispatchers: DispatchersProvider
 ):PostsInteractor {
 
     override suspend fun getPosts(): Flow<Result<List<UserPost>>> =
-        withContext(Dispatchers.IO) { repository.getAllPosts() }
+        withContext(dispatchers.io) { repository.getAllPosts() }
 
     override suspend fun refreshPosts() {
-        withContext(Dispatchers.IO) { repository.refreshPosts()}
+        withContext(dispatchers.io) { repository.refreshPosts()}
     }
 }

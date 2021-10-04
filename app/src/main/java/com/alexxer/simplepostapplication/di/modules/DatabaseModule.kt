@@ -17,13 +17,14 @@ class DatabaseModule {
     fun provideDatabase(context: Context): AppDatabase =
         Room
             .databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
-            .fallbackToDestructiveMigration()
             .build()
 
     @Provides
+    @Singleton
     fun providePostsDao(database: AppDatabase): PostDao = database.getPostDao()
 
     @Provides
+    @Singleton
     fun provideUserDao(database: AppDatabase): UserDao = database.getUserDao()
 
     private companion object {

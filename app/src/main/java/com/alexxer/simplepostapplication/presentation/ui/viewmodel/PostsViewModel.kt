@@ -27,9 +27,9 @@ class PostsViewModel(private val interactor: PostsInteractor) : ViewModel() {
     val isDialogOpen: StateFlow<Boolean> = _isDialogOpen.asStateFlow()
 
     fun refreshPosts() {
-        _isLoading.tryEmit(true)
-        _isDialogOpen.tryEmit(false)
         viewModelScope.launch {
+            _isLoading.emit(true)
+            _isDialogOpen.emit(false)
             runCatching { interactor.refreshPosts() }
                 .onFailure {
                     _isLoading.emit(false)

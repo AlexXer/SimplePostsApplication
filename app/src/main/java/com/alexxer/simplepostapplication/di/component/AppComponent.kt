@@ -3,6 +3,7 @@ package com.alexxer.simplepostapplication.di.component
 import android.app.Application
 import android.content.Context
 import com.alexxer.simplepostapplication.di.modules.DatabaseModule
+import com.alexxer.simplepostapplication.di.modules.DispatchersProviderModule
 import com.alexxer.simplepostapplication.di.modules.InteractorModule
 import com.alexxer.simplepostapplication.di.modules.NetworkModule
 import com.alexxer.simplepostapplication.di.modules.RepositoryModule
@@ -16,7 +17,8 @@ import javax.inject.Singleton
         NetworkModule::class,
         DatabaseModule::class,
         RepositoryModule::class,
-        InteractorModule::class
+        InteractorModule::class,
+        DispatchersProviderModule::class
     ]
 )
 @Singleton
